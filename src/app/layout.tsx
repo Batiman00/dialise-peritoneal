@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt'>
-      <body className={inter.className} >
+      <body className={`${inter.className} v-full `} >
       <Header/>
         <Sidebar /> 
         <main className='mx-5 mt-16 sm:ml-[300px] sm:mt-3'>{children}</main>
