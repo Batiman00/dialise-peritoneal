@@ -1,4 +1,5 @@
 
+import DialiseForms from "@/components/DialiseForms";
 import { Separator } from "@radix-ui/react-separator";
 import { Poppins, Roboto } from "next/font/google";
 
@@ -22,7 +23,7 @@ export default function FormsPage() {
         <h1 className={`${poppins.variable} py-8 text-5xl text-neutral-800`}>Nova prescrição</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a justo viverra, molestie quam vitae, consectetur ligula. Curabitur molestie scelerisque augue at convallis. Vestibulum pellentesque, erat id cursus dignissim, lacus enim rutrum quam, sed porttitor massa quam eget ex. In sed arcu eu metus dictum accumsan vel id tortor. </p>
         <Separator/>
-        <p>Forms</p>
+        <DialiseForms/>
       </div>
     </div>
   );

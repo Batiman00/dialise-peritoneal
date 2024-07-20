@@ -31,7 +31,7 @@ export function SidebarMobile(props: SidebarMobileProps) {
       </SheetTrigger>
       <SheetContent side='left' className='px-3 py-4  bg-cyan-900' hideClose>
         <SheetHeader className='flex flex-row justify-between items-center space-y-0'>
-          <span className='text-lg font-semibold text-foreground mx-3'>
+          <span className='text-lg font-semibold text-foreground mx-3 text-white'>
           Diálise Peritoneal Online
           </span>
           <SheetClose asChild>
@@ -45,7 +45,7 @@ export function SidebarMobile(props: SidebarMobileProps) {
             {props.sidebarItems.links.map((link, idx) => (
               <Link key={idx} href={link.href}>
                 <SidebarButton
-                  variant={pathname === link.href ? 'secondary' : 'ghost'}
+                  variant={pathname === link.href ? 'select' : 'ghost'}
                   icon={link.icon}
                   className='w-full'
                 >
