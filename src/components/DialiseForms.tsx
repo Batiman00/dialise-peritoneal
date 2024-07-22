@@ -12,15 +12,28 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { getRecommendation } from "@/lib/actions";
+import { useFormStatus } from "react-dom";
 
 const formSchema = z
   .object({
-    idade: z.number().int().gt(0),
-    peso: z.number().gt(0),
-    altura: z.number().int().gt(0),
+    idade: z.coerce.number().int().gt(0),
+    peso: z.coerce.number().gt(0),
+    altura: z.coerce.number().int().gt(0),
   })
 
+function ButtonForms(){
+  const {pending} = useFormStatus();
+  return(
+    <Button type="submit" className="w-full bg-cyan-600">
+    {pending ? "Gerando..." : "Gerar"}
+    </Button>
+  )
+}
+
+
 export default function DialiseForms() {
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -30,15 +43,11 @@ export default function DialiseForms() {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log({ values });
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(handleSubmit)}
+        action={getRecommendation}
           className="max-w-md w-full flex flex-col gap-4"
         >
           <FormField
@@ -94,9 +103,7 @@ export default function DialiseForms() {
               );
             }}
           />
-          <Button type="submit" className="w-full bg-cyan-600">
-            Gerar
-          </Button>
+          <ButtonForms/>
         </form>
       </Form>
     </main>
