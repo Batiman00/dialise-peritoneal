@@ -147,9 +147,9 @@ export default function DialiseForms() {
       <Form {...form}>
         <form
           action={getRecommendation}
-          className="max-w-6xl w-full flex flex-row gap-8"
+          className="max-w-6xl w-full flex flex-col md:flex-row  gap-8"
         >
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
           <div>
             <h3 className="text-lg font-medium">Informações Laborais</h3>
             <p className="text-sm text-muted-foreground">
@@ -159,7 +159,7 @@ export default function DialiseForms() {
             <Separator />
             {LoaboralMetricsFields.map((field) => renderField(field, form))}
           </div>
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
           <div>
             <h3 className="text-lg font-medium">Informações Demográficas e Físicas</h3>
             <p className="text-sm text-muted-foreground">
