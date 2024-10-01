@@ -30,9 +30,12 @@ export default function FormsPage() {
     <div className="flex flex-col h-full justify-between">
       <div className={`${roboto.className} py-10 px-8 text-1xl text-neutral-600`}>
         <h1 className={`${poppins.variable} py-8 text-5xl text-neutral-800`}>Nova prescrição</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a justo viverra, molestie quam vitae, consectetur ligula. Curabitur molestie scelerisque augue at convallis. Vestibulum pellentesque, erat id cursus dignissim, lacus enim rutrum quam, sed porttitor massa quam eget ex. In sed arcu eu metus dictum accumsan vel id tortor. </p>
-        <Separator/>
+        <p>Preencha as informações abaixo para criar uma nova prescrição.
+           É fundamental que todos os campos sejam preenchidos com atenção, pois isso assegura que o paciente receba um tratamento personalizado e eficaz.
+            Sua precisão nesta etapa é essencial para a saúde e o bem-estar do paciente.</p>
+         <Separator/>
         <Suspense fallback={<Loading/>}>
+      <Separator />
           <DialiseForms/>
         </Suspense>
       </div>
