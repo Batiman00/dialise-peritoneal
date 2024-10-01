@@ -1,6 +1,6 @@
 "use client";
 import * as z from "zod";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormReturn } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -17,6 +17,8 @@ import { getRecommendation } from "@/lib/actions";
 import { useFormStatus } from "react-dom";
 import { Separator } from "@radix-ui/react-separator";
 import { Checkbox } from "./ui/checkbox";
+import { bodyMetricsFields, LoaboralMetricsFields } from "@/lib/utils";
+import { DPFormsFields } from "@/types";
 
 const formSchema = z
   .object({
@@ -26,10 +28,20 @@ const formSchema = z
     genero: z.enum(["Masculino", "Feminino", "Outro"]),
     diabetes: z.coerce.boolean(),
     hipertensao: z.coerce.boolean(),
-    creatina: z.coerce.number().gt(0),
+    remedio: z.enum(["Nenhum", "IECA/BRA", "Insulina", "Furosemida", "Outros"]),
+    creatinina: z.coerce.number().gt(0),
     ureia: z.coerce.number().gt(0),
     potassio: z.coerce.number().gt(0),
-  })
+    sodio: z.coerce.number().gt(0),
+    hemoglobina: z.coerce.number().gt(0),
+    crp: z.coerce.number().gt(0),
+    fosforo: z.coerce.number().gt(0),
+    calcio: z.coerce.number().gt(0),
+    pth: z.coerce.number().gt(0),
+    bic: z.coerce.number().gt(0),
+    pressao: z.coerce.number().gt(0),
+    batimento: z.coerce.number().gt(0),
+  });
 
 function ButtonForms() {
   const { pending } = useFormStatus();
@@ -39,7 +51,6 @@ function ButtonForms() {
     </Button>
   )
 }
-
 
 export default function DialiseForms() {
 
@@ -51,6 +62,84 @@ export default function DialiseForms() {
       altura: 0,
     },
   });
+  function renderField(field: DPFormsFields, form: UseFormReturn<any>) {
+    switch (field.type) {
+      case 'input':
+        return (
+          <FormField
+            key={field.name}
+            control={form.control}
+            name={field.name}
+            render={({ field: formField }) => {
+              return (
+                <FormItem>
+                  <FormLabel>{field.label}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={field.placeholder}
+                      type={field.inputType || 'text'}
+                      {...formField}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+        );
+      case 'select':
+        return (
+          <FormField
+            key={field.name}
+            control={form.control}
+            name={field.name}
+            render={({ field: formField }) => {
+              return (
+                <FormItem>
+                  <FormLabel>{field.label}</FormLabel>
+                  <FormControl>
+                    <Select onValueChange={formField.onChange} defaultValue={formField.value}>
+                      <SelectTrigger>
+                        <SelectValue placeholder={field.placeholder || "Selecione"} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {field.options?.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+        );
+      case 'checkbox':
+        return (
+          <FormField
+            key={field.name}
+            control={form.control}
+            name={field.name}
+            render={({ field: formField }) => {
+              return (
+                <FormItem className="flex items-end space-x-2">
+                  <FormLabel>{field.label}</FormLabel>
+                  <FormControl>
+                    <Checkbox checked={formField.value} onCheckedChange={formField.onChange} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+        );
+      default:
+        return null;
+    }
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between ph-24 pt-10">
@@ -68,185 +157,23 @@ export default function DialiseForms() {
             </p>
           </div>
             <Separator />
-            <FormField
-              control={form.control}
-              name="genero"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Gênero</FormLabel>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Selecione o gênero" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Masculino">Masculino</SelectItem>
-                          <SelectItem value="Feminino">Feminino</SelectItem>
-                          <SelectItem value="Outro">Outro</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="peso"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Peso (Kg)</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Peso (Kg)"
-                        type="number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="idade"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Idade</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Idade (anos)" type="number" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="altura"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Altura (cm)</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Altura (cm)"
-                        type="number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="diabetes"
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex items-end space-x-2">
-                    <FormLabel >Paciente tem diabetes?</FormLabel>
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="hipertensao"
-              render={({ field }) => {
-                return (
-                  <FormItem className="flex items-end space-x-2">
-                    <FormLabel>Paciente é hipertenso ?</FormLabel>
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
+            {LoaboralMetricsFields.map((field) => renderField(field, form))}
           </div>
-
-          {/* Segunda Seção */}
           <div className="w-1/2">
           <div>
-            <h3 className="text-lg font-medium">Resultados laborais</h3>
+            <h3 className="text-lg font-medium">Informações Demográficas e Físicas</h3>
             <p className="text-sm text-muted-foreground">
-              Informe se o paciente apresenta as seguintes condições.
+              Informações gerais das características físicas do paciente.
             </p>
           </div>
             <Separator />
-            <FormField
-              control={form.control}
-              name="creatina"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Creatina (mg/dL)</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Nível de creatina (mg/dL)"
-                        type="number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="ureia"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Ureia (mg/dL)</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Ureia (mg/dL)"
-                        type="number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-            <FormField
-              control={form.control}
-              name="potassio"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Potassio (mEq/L)</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Potassio (mEq/L)"
-                        type="number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
+            {bodyMetricsFields.map((field) => renderField(field, form))}
             <ButtonForms/>
           </div>
         </form>
       </Form>
     </main >
   );
+
+  
 }

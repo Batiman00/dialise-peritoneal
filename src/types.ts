@@ -9,3 +9,15 @@ export interface SidebarItems {
   }>;
   extras?: ReactNode;
 }
+
+export interface DPFormsFields {
+  type: string;
+  name: string;
+  label: string;
+  options?: Array<{
+    value: string;
+    label: string;
+  }>;
+  placeholder?: string;
+  inputType?: string;
+}
