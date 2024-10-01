@@ -19,10 +19,20 @@ export default function Home() {
     <div className="flex flex-col h-full justify-between">
       <div className={`${roboto.className} py-10 px-8 text-1xl text-neutral-600`}>
         <h1 className={`${poppins.variable} py-8 text-5xl text-neutral-800`}>Sobre</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a justo viverra, molestie quam vitae, consectetur ligula. Curabitur molestie scelerisque augue at convallis. Vestibulum pellentesque, erat id cursus dignissim, lacus enim rutrum quam, sed porttitor massa quam eget ex. In sed arcu eu metus dictum accumsan vel id tortor. Maecenas quis vehicula ligula, id efficitur sem. Vestibulum odio libero, egestas vel pretium in, mollis quis lacus. In at nibh auctor purus euismod sodales in a nibh. Nullam ac placerat quam. Nam eu tellus ex. Donec ma
-        ximus massa nec tellus aliquam bland</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a justo viverra, molestie quam vitae, consectetur ligula. Curabitur molestie scelerisque augue at convallis. Vestibulum pellentesque, erat id cursus dignissim, lacus enim rutrum quam, sed porttitor massa quam eget ex. In sed arcu eu metus dictum accumsan vel id tortor. Maecenas quis vehicula ligula, id efficitur sem. Vestibulum odio libero, egestas vel pretium in, mollis quis lacus. In at nibh auctor purus euismod sodales in a nibh. Nullam ac placerat quam. Nam eu tellus ex. Donec ma
-        ximus massa nec tellus aliquam bland</p>
+        <p>Este projeto propõe o desenvolvimento de um modelo de inteligência artificial para personalizar o 
+          tratamento de diálise peritoneal (DP), uma terapia de substituição renal utilizada em pacientes com doença 
+          renal crônica. A proposta busca solucionar as limitações das abordagens tradicionais de prescrição de DP, que 
+          muitas vezes são padronizadas e não consideram as necessidades individuais dos pacientes.</p>
+
+        <p>Com o uso de IA, o modelo será capaz de integrar uma vasta quantidade de dados clínicos, como 
+          características demográficas e resultados de exames, para identificar o regime de tratamento mais 
+          adequado para cada paciente. O objetivo é otimizar a prescrição de DP, melhorando os resultados clínicos 
+          e a qualidade de vida dos pacientes, além de reduzir complicações e custos associados a tratamentos inadequados.</p>
+
+        <p>O projeto envolve a coleta e preparação de dados de pacientes reais, o treinamento do modelo de IA,
+           sua validação junto a especialistas e a disponibilização de uma ferramenta de fácil uso para profissionais 
+           da saúde. A IA será ajustada continuamente com base no feedback médico, tornando o tratamento cada vez mais 
+           preciso e eficiente.</p>
       </div>
     </div>
   );
