@@ -151,9 +151,9 @@ export default function DialiseForms() {
         >
           <div className="w-1/2">
           <div>
-            <h3 className="text-lg font-medium">Informações Demográficas e Físicas</h3>
+            <h3 className="text-lg font-medium">Informações Laborais</h3>
             <p className="text-sm text-muted-foreground">
-              Informações gerais das características físicas do paciente.
+              Informações sobre os exames feitos pelo paciente.
             </p>
           </div>
             <Separator />
