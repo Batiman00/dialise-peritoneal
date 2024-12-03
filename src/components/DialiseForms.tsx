@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Select, SelectTrigger, SelectContent, SelectValue, SelectItem } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { getRecommendation } from "@/lib/actions";
+import { getRecommendation } from "@/lib/action/prescription";
 import { useFormStatus } from "react-dom";
 import { Separator } from "@radix-ui/react-separator";
 import { Checkbox } from "./ui/checkbox";
@@ -142,7 +142,7 @@ export default function DialiseForms() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between ph-24 pt-10">
+    <div className="flex min-h-screen flex-col items-center justify-between ph-24 pt-10">
 
       <Form {...form}>
         <form
@@ -172,7 +172,7 @@ export default function DialiseForms() {
           </div>
         </form>
       </Form>
-    </main >
+    </div >
   );
 
   

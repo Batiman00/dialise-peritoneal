@@ -1,8 +1,10 @@
 'use client';
 
+
 import {
   ClipboardPlus,
   Info,
+  Table
 } from 'lucide-react';
 
 import { useMediaQuery } from 'usehooks-ts';
@@ -13,6 +15,7 @@ const sidebarItems: SidebarItems = {
   links: [
     { label: 'Sobre', href: '/', icon: Info },
     { label: 'Nova prescrição', href: '/item/prescricao', icon: ClipboardPlus },
+    { label: 'Pesquisas', href: '/item/pesquisas', icon: Table}
   ],
 };
 

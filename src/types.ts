@@ -21,3 +21,13 @@ export interface DPFormsFields {
   placeholder?: string;
   inputType?: string;
 }
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string; // Add id property
+      email: string;
+      name?: string | null;
+      image?: string | null;
+    };
+  }
+}
