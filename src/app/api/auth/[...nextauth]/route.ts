@@ -21,7 +21,7 @@ const authOptions: NextAuthOptions = {
           });
 
           if (user && (await bcrypt.compare(password, user.password))) {
-            return { id: user.id, email: user.email };
+            return { id: user.id, email: user.email, name: user.name };
           }
         } catch (error) {
           console.error("Authorization error:", error);

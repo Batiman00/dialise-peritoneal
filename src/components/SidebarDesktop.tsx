@@ -5,6 +5,11 @@ import Link from 'next/link';
 import { Separator } from './ui/separator';
 import { usePathname } from 'next/navigation';
 import { SidebarItems } from '@/types';
+import { Button } from './ui/button';
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
+
 
 interface SidebarDesktopProps {
   sidebarItems: SidebarItems;
@@ -12,10 +17,12 @@ interface SidebarDesktopProps {
 
 export function SidebarDesktop(props: SidebarDesktopProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <aside className='w-[270px] max-w-xs v-full fixed left-0 top-0 z-40 border-r bg-cyan-900 h-lvh'>
-      <div className='h-full px-3 py-4'>
+      <div className='h-full px-3 py-4 flex flex-col justify-between '>
         <div className='mt-5'>
           <div className='flex flex-col gap-1 w-full'>
             {props.sidebarItems.links.map((link, index) => (
@@ -30,11 +37,17 @@ export function SidebarDesktop(props: SidebarDesktopProps) {
               </Link>
             ))}
           </div>
-          <div className='absolute left-0 bottom-3 w-full px-3'>
-            <Separator className='absolute -top-3 left-0 w-full' />
-            Suporte
-          </div>
         </div>
+
+        <div className='flex gap-2 flex-col w-full'>
+          {session ? (
+            <Button  className='' onClick={ () => {signOut({callbackUrl: "/"})}}>Logout</Button>
+                     ) : (
+              <Button onClick={() => {router.push("/auth/login")}}>Login</Button>
+                  )}
+            <Separator className=' w-full' />
+            <p>Suporte</p>
+          </div>
       </div>
     </aside>
   );
