@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt'>
-      <body className={`${inter.className} v-full `} >
+      <body className={`${inter.className} v-full `} suppressHydrationWarning >
         <SessionProvider>
           <Header/>
           <Sidebar /> 

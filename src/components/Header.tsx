@@ -14,7 +14,7 @@ export default function Header() {
         />
         <div className='mr-4 grid grid-rows-2 justify-items-end items-center'>
           <h3 className=' text-lg font-semibold text-foreground text-white'>Diálise Peritoneal Online</h3>
-          <p >{session ? `${session.user.name} (${session.user.email})` : 'Convidado'}</p>
+          <p >{session ? `${session?.user?.name} (${session?.user?.email})` : 'Convidado'}</p>
         </div>
       </header>
     );
