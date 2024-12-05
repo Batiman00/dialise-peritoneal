@@ -11,10 +11,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue , SelectGroup, SelectLabel} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-// Define o esquema de validação com Zod
 const formSchema = z.object({
   email: z.string().email("Email inválido").min(1,"O email é obrigatório"),
   password: z.string().min(8, "A senha precisa ter pelo menos 8 caracteres"),
@@ -24,14 +24,16 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+
 const Register = () => {
+  const router = useRouter(); 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
       crm: "",
-      state: "SP",
+      state: "",
     },
   });
 
@@ -55,6 +57,7 @@ const Register = () => {
 
       if (response.ok) {
         alert("Usuário registrado com sucesso");
+        router.push("/auth/login")
       } else {
         alert(`Erro: ${result.error.join(", ")}`);
       }
@@ -131,16 +134,19 @@ const Register = () => {
               <FormItem>
                 <FormLabel>Estado</FormLabel>
                 <FormControl>
-                  <Select {...field}>
+                  <Select value={field.value}  onValueChange={field.onChange}>
                     <SelectTrigger>
                       <SelectValue placeholder="Selecione o estado" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectGroup>
+                      <SelectLabel>Estado</SelectLabel>
                       {states.map((state) => (
                         <SelectItem key={state} value={state}>
                           {state}
                         </SelectItem>
                       ))}
+                      </SelectGroup>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -149,7 +155,7 @@ const Register = () => {
             )}
           />
 
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="w-full bg-cyan-600" disabled={isSubmitting}>
             {isSubmitting ? "Registrando..." : "Registrar"}
           </Button>
         </form>

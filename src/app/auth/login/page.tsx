@@ -9,8 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from 'next/link';
 
-// Esquema de validação com zod
+// Validação com zod
 const loginSchema = z.object({
   email: z.string().email("Email inválido").nonempty("O email é obrigatório"),
   password: z.string().min(8, "A senha precisa ter pelo menos 8 caracteres"),
@@ -81,10 +82,10 @@ export default function SignIn() {
             )}
           />
 
-          {/* Botões */}
           <Button type="submit" className="w-full bg-cyan-600" disabled={isLoading}>
             {isLoading ? "Carregando..." : "Entrar"}
           </Button>
+          <Link key="Register" href="/auth/register"><Button className="w-full bg-cyan-600 my-3"> Registrar</Button></Link>
           <div className="text-center">
             <p className="text-sm text-gray-500">
               <a
