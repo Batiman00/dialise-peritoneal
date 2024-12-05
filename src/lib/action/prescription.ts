@@ -8,14 +8,15 @@ export async function getRecommendation(formData: FormData) {
         Creatinine : formData.get('creatinina'),
         Urea : formData.get('Ureia'),
         Potassium : formData.get('potassio'),
-        ECW : formData.get('creatinina'),
-        UreaClearance : formData.get('creatinina'),
+        ECW : formData.get('creatinina'),             //*
+        UreaClearance : formData.get('creatinina'),  //*
         Hemoglobin : formData.get('hemoglobina'),
-        CRP : formData.get('crp'),
+        CRP : formData.get('crp'),                   //*
         Phosphorus : formData.get('fosforo'),
         Calcium : formData.get('calcio'),
-        PTH : formData.get('pth'),
+        PTH : formData.get('pth'),                   //*
         Bicarbonate : formData.get('bic'),
+        cpf: formData.get('cpf'),
       }
 
 

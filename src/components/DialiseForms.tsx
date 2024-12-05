@@ -22,6 +22,7 @@ import { DPFormsFields } from "@/types";
 
 const formSchema = z
   .object({
+    cpf: z.string().min(11, "CPF deve ter pelo menos 11 caracteres"),
     idade: z.coerce.number().int().gt(0),
     peso: z.coerce.number().gt(0),
     altura: z.coerce.number().int().gt(0),
@@ -60,6 +61,7 @@ export default function DialiseForms() {
       idade: 0,
       peso: 0,
       altura: 0,
+      cpf: "",
     },
   });
   function renderField(field: DPFormsFields, form: UseFormReturn<any>) {
@@ -149,6 +151,34 @@ export default function DialiseForms() {
           action={getRecommendation}
           className="max-w-6xl w-full flex flex-col md:flex-row  gap-8"
         >
+          <div className="w-full md:w-1/2">
+          <div>
+            <h3 className="text-lg font-medium">Paciente</h3>
+            <p className="text-sm text-muted-foreground mb-2">
+            Informe o CPF do paciente para acompanhar sua evolução. Esse campo é considerado apenas para usuários logados. Importante: o CPF não é armazenado em nosso sistema, garantindo a privacidade e segurança das informações.</p>
+          </div>
+            <Separator />
+            <FormField
+            key="CPF"
+            control={form.control}
+            name="cpf"
+            render={({ field: formField }) => {
+              return (
+                <FormItem>
+                  <FormLabel>CPF (apenas números)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="CPF"
+                      type= 'text'
+                      {...formField}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
+          </div>
           <div className="w-full md:w-1/2">
           <div>
             <h3 className="text-lg font-medium">Informações Laborais</h3>
