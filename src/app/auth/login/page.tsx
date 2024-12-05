@@ -38,7 +38,7 @@ export default function SignIn() {
       callbackUrl: "/protected/pesquisas",
     });
 
-    setIsLoading(false); // Desativa o estado de carregamento
+    setIsLoading(false);
 
     if (res?.error) {
       form.setError("email", { message: "Email ou senha inválidos" });
@@ -48,47 +48,55 @@ export default function SignIn() {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen bg-gray-50">
-      <div className="max-w-sm w-full p-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-center mb-4">Login</h2>
+    <div className="max-w-sm w-full p-6 rounded-lg shadow-2xl flex flex-col justify-self-center items-center bg-grey-900 h-4/5">
+      <h2 className="text-2xl font-semibold text-center mb-4 ">Login</h2>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Campo de email */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="Digite seu email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="Digite seu email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Senha</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Digite sua senha" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Senha</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Digite sua senha" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-            <Button type="submit" className="w-full bg-cyan-600" disabled={isLoading}>
-              {isLoading ? "Carregando..." : "Entrar"}
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </main>
+          {/* Botões */}
+          <Button type="submit" className="w-full bg-cyan-600" disabled={isLoading}>
+            {isLoading ? "Carregando..." : "Entrar"}
+          </Button>
+          <div className="text-center">
+            <p className="text-sm text-gray-500">
+              <a
+                className="text-cyan-600 hover:underline"
+                onClick={() => router.push("/auth/forgot-password")}
+              >
+                Esqueceu a senha?
+              </a>
+            </p>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 }
