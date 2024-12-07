@@ -50,14 +50,14 @@ export default function Home() {
               </TableRow>
               <TableRow key="Frequência">
                 <TableCell>Frequência</TableCell>
-                <TableCell>4 vezes ao dia</TableCell> 
+                <TableCell>4 Ciclos ao dia</TableCell> 
               </TableRow>
               <TableRow key="Ciclos">
-                <TableCell>Ciclos</TableCell>
+                <TableCell>Volume por Ciclo</TableCell>
                 <TableCell>20 mL/Kg</TableCell> 
               </TableRow>
               <TableRow key="Tempo total">
-                <TableCell>Ciclos</TableCell>
+                <TableCell> Duração dos Ciclos</TableCell>
                 <TableCell>9 horas</TableCell> 
               </TableRow>
             </TableBody>
