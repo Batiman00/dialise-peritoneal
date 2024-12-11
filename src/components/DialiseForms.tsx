@@ -19,7 +19,7 @@ import { Separator } from "@radix-ui/react-separator";
 import { Checkbox } from "./ui/checkbox";
 import { bodyMetricsFields, LoaboralMetricsFields } from "@/lib/utils";
 import { DPFormsFields } from "@/types";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -59,6 +59,7 @@ const formSchema = z
 export default function DialiseForms() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter()
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>, session: any) {
     event.preventDefault();
@@ -95,10 +96,10 @@ export default function DialiseForms() {
   
       const data = await response.json();
   
-      if (data.status === "sucesso" && data.response.length > 0) {
+      if (data.response.length > 0 ) {
         const responseData = data.response;
   
-        if (session) {
+        if (session?.user) {
           responseData.push(data.version);
           responseData.push(formData.get("cpf"));
           responseData.push(session.user.id);
@@ -108,15 +109,14 @@ export default function DialiseForms() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ ...rawFormData, session: session.user.id }),
+            body: JSON.stringify(responseData),
           });
   
           if (!registerResponse.ok) {
             throw new Error("Erro ao registrar prescrição");
           }
         }
-  
-        redirect(`/item/resultado?responseData=${encodeURIComponent(JSON.stringify(responseData.slice(0, 6)))}`);
+        router.push(`/item/resultado?responseData=${encodeURIComponent(JSON.stringify(responseData.slice(0, 7)))}`);
       }
     } catch (error) {
       alert("Erro ao comunicar com a API");

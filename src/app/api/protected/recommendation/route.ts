@@ -25,7 +25,7 @@ export async function POST(req: Request) {
           SolutionInsulinLower: rawFormData.SolutionInsulinL,
           
           ModelVersion: formData[7],
-          PacientId: bcrypt.hashSync(formData[8], 10),
+          PacientId: bcrypt.hashSync(rawFormData.CPF, 10),
           userId: formData[9], 
         },
       });
@@ -56,6 +56,6 @@ function extractRawFormData(formData: any) {
     SolutionGlucoseL: parseFloat(formData[5][1]),
     SolutionInsulinL: parseFloat(formData[6][1]),
 
-    CPF: formData.cpf.replace(/\D/g, ''), 
+    CPF: formData[8]?.replace(/\D/g, ''), 
   };
 }

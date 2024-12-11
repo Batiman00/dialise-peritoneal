@@ -48,31 +48,31 @@ function PrescricaoTable() {
       <TableBody>
         <TableRow key="Volume Total">
           <TableCell>Volume Total</TableCell>
-          <TableCell>De {responseData?.[0][0]} a {responseData?.[0][0]} L</TableCell> 
+          <TableCell>Entre {responseData?.[0]?.[0]} a {responseData?.[0]?.[1]} L</TableCell> 
         </TableRow>
         <TableRow key="Cycle Count">
           <TableCell>Cycle Count</TableCell>
-          <TableCell>De {responseData?.[1][0]} a {responseData?.[1][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[1]?.[0]} a {responseData?.[1]?.[1]}</TableCell> 
         </TableRow>
         <TableRow key="Duração da terapia">
           <TableCell>Duração da terapia</TableCell>
-          <TableCell>{responseData?.[2][0]} a {responseData?.[2][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[2]?.[0]} a {responseData?.[2]?.[1]}</TableCell> 
         </TableRow>
         <TableRow key="Concentração de cálcio">
           <TableCell>Concentração de cálcio</TableCell>
-          <TableCell>{responseData?.[3][0]} a {responseData?.[3][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[3]?.[0]} a {responseData?.[3]?.[1]}</TableCell> 
         </TableRow>
         <TableRow key="Concentração de potássio">
           <TableCell>Concentração de potássio</TableCell>
-          <TableCell>{responseData?.[4][0]} a {responseData?.[4][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[4]?.[0]} a {responseData?.[4]?.[1]}</TableCell> 
         </TableRow>
         <TableRow key="Concentração de glicose">
           <TableCell>Concentração de glicose</TableCell>
-          <TableCell>{responseData?.[5][0]} a {responseData?.[5][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[5]?.[0]} a {responseData?.[5]?.[1]}</TableCell> 
         </TableRow>
         <TableRow key="Concentração de insulina">
           <TableCell>Concentração de insulina</TableCell>
-          <TableCell>{responseData?.[6][0]} a {responseData?.[6][0]}</TableCell> 
+          <TableCell>Entre {responseData?.[6]?.[0]} a {responseData?.[6]?.[1]}</TableCell> 
         </TableRow>
       </TableBody>
     </Table>
