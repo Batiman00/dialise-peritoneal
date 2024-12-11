@@ -72,7 +72,7 @@ export const LoaboralMetricsFields: Array<DPFormsFields> = [
   },
   {
     type: "input",
-    name: "Ureia",
+    name: "ureia",
     label: "Ureia (mg/dL)",
     placeholder: "Ureia (mg/dL)",
     inputType: "number",
@@ -128,6 +128,13 @@ export const LoaboralMetricsFields: Array<DPFormsFields> = [
   },
   {
     type: "input",
+    name: "ureaClearance",
+    label: "ureaClearance",
+    placeholder: "ureaClearance",
+    inputType: "number",
+  },
+  {
+    type: "input",
     name: "bic",
     label: "BIC (mEq/L)",
     placeholder: "BIC (mEq/L)",
@@ -135,16 +142,16 @@ export const LoaboralMetricsFields: Array<DPFormsFields> = [
   },
   {
     type: "input",
-    name: "pressao",
-    label: "Pressão sanguínea",
-    placeholder: "Pressão sanguínea",
+    name: "bmi",
+    label: "bmi",
+    placeholder: "BMI",
     inputType: "number",
   },
   {
     type: "input",
-    name: "batimento",
-    label: "Frequência cardíaca",
-    placeholder: "Frequência cardíaca",
+    name: "ecw",
+    label: "ecw",
+    placeholder: "ECW",
     inputType: "number",
   },
 ];
