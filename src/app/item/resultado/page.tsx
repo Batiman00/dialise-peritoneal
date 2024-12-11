@@ -18,6 +18,7 @@ const roboto = Roboto({
 });
 
 interface PrescricaoTableProps {
+  // responseData type can be modified depending on the structure of the data
   responseData: any[];
 }
 
