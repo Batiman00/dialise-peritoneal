@@ -21,6 +21,30 @@ export interface DPFormsFields {
   placeholder?: string;
   inputType?: string;
 }
+
+export interface Prescription {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  TotalVolumeLower: number;
+  TotalVolumeUpper: number;
+  CycleCountLower: number;
+  CycleCountUpper: number;
+  TherapyDurationLower: number;
+  TherapyDurationUpper: number;
+  SolutionCalciumLower: number;
+  SolutionCalciumUpper: number;
+  SolutionPotassiumLower: number;
+  SolutionPotassiumUpper: number;
+  SolutionGlucoseLower: number;
+  SolutionGlucoseUpper: number;
+  SolutionInsulinLower: number;
+  SolutionInsulinUpper: number;
+  ModelVersion: string;
+  PacientId: string;
+  userId: string;
+}
+
 declare module "next-auth" {
   interface Session {
     user: {

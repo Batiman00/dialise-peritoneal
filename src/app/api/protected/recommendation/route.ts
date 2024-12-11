@@ -6,6 +6,12 @@ export async function POST(req: Request) {
   try {
     const formData = await req.json();
     const rawFormData = extractRawFormData(formData);
+    const crypto = require('crypto');
+    const salt = Array.from(String(formData[9])).reduce((acc: number, char: string) => acc *10 + char.charCodeAt(0), 0);
+    const hash = crypto.createHash('sha256'); 
+    hash.update(rawFormData.CPF + salt.toString()); 
+    const hashedValue = hash.digest('hex');
+
     const prescription = await prisma.prescription.create({
         data: {
           TotalVolumeUpper: rawFormData.TotalVolumeU,
@@ -25,7 +31,7 @@ export async function POST(req: Request) {
           SolutionInsulinLower: rawFormData.SolutionInsulinL,
           
           ModelVersion: formData[7],
-          PacientId: bcrypt.hashSync(rawFormData.CPF, 10),
+          PacientId: hashedValue,
           userId: formData[9], 
         },
       });

@@ -15,7 +15,7 @@ const sidebarItems: SidebarItems = {
   links: [
     { label: 'Sobre', href: '/', icon: Info },
     { label: 'Nova prescrição', href: '/item/prescricao', icon: ClipboardPlus },
-    { label: 'Pesquisas', href: '/item/pesquisas', icon: Table}
+    { label: 'Pesquisas', href: '/protected/pesquisas', icon: Table}
   ],
 };
 
