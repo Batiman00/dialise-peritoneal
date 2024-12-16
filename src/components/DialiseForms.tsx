@@ -146,7 +146,6 @@ export default function DialiseForms() {
       calcio: 0,
       pth: 0,
       bic: 0,
-      bmi: 0,
       ecw: 0,
       ureaClearance: 0,
     },
