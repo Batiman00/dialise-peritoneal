@@ -19,7 +19,7 @@ import { Separator } from "@radix-ui/react-separator";
 import { Checkbox } from "./ui/checkbox";
 import { bodyMetricsFields, LoaboralMetricsFields } from "@/lib/utils";
 import { DPFormsFields } from "@/types";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -41,7 +41,6 @@ const formSchema = z
     calcio: z.coerce.number().gt(0),
     pth: z.coerce.number().gt(0),
     bic: z.coerce.number().gt(0),
-    bmi: z.coerce.number().gt(0),
     ecw: z.coerce.number().gt(0),
     ureaClearance: z.coerce.number().gt(0),
   });
@@ -65,9 +64,10 @@ export default function DialiseForms() {
     event.preventDefault();
     setIsSubmitting(true);
     const formData = new FormData(event.currentTarget);
+    const bmi = parseFloat(formData.get("peso") as string) / (parseFloat(formData.get("altura") as string) * parseFloat(formData.get("altura") as string))
   
     const rawFormData = {
-      BMI: parseFloat(formData.get("bmi") as string) || null,
+      BMI: bmi,
       Creatinine: parseFloat(formData.get("creatinina") as string) || null,
       Urea: parseFloat(formData.get("ureia") as string) || null,
       Potassium: parseFloat(formData.get("potassio") as string) || null,
@@ -82,7 +82,7 @@ export default function DialiseForms() {
     };
   
     try {
-      const response = await fetch("https://dpa-api.onrender.com/predict", {
+      const response = await fetch("https://reliable-isabella-dpa-6bca416b.koyeb.app/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

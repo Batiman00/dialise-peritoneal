@@ -129,8 +129,8 @@ export const LoaboralMetricsFields: Array<DPFormsFields> = [
   {
     type: "input",
     name: "ureaClearance",
-    label: "ureaClearance",
-    placeholder: "ureaClearance",
+    label: "ureaClearance (mL/min)",
+    placeholder: "ureaClearance (mL/min)",
     inputType: "number",
   },
   {
@@ -142,16 +142,9 @@ export const LoaboralMetricsFields: Array<DPFormsFields> = [
   },
   {
     type: "input",
-    name: "bmi",
-    label: "bmi",
-    placeholder: "BMI",
-    inputType: "number",
-  },
-  {
-    type: "input",
     name: "ecw",
-    label: "ecw",
-    placeholder: "ECW",
+    label: "ecw (L)",
+    placeholder: "ECW (L)",
     inputType: "number",
   },
 ];

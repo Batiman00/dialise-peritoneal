@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import prisma  from "@/lib/prisma";
-import bcrypt from "bcryptjs";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
