@@ -86,7 +86,7 @@ export default function ConsultaPrescricoes() {
             {prescricoes.map((prescricao) => (
               <TableRow key={prescricao.id}>
                 <TableCell>{new Date(prescricao.createdAt).toLocaleDateString()}</TableCell>
-                <TableCell>{prescricao.TotalVolumeLower} - {prescricao.TotalVolumeUpper} L</TableCell>
+                <TableCell>{prescricao.TotalVolumeLower} - {prescricao.TotalVolumeUpper} mL</TableCell>
                 <TableCell>{prescricao.CycleCountLower} - {prescricao.CycleCountUpper}</TableCell>
                 <TableCell>{prescricao.TherapyDurationLower} - {prescricao.TherapyDurationUpper} horas</TableCell>
                 <TableCell>{prescricao.SolutionCalciumLower} - {prescricao.SolutionCalciumUpper} mg/L</TableCell>

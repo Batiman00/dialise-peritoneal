@@ -48,7 +48,7 @@ function PrescricaoTable() {
       <TableBody>
         <TableRow key="Volume Total">
           <TableCell>Volume Total</TableCell>
-          <TableCell>Entre {responseData?.[0]?.[0]} a {responseData?.[0]?.[1]} L</TableCell> 
+          <TableCell>Entre {responseData?.[0]?.[0]} a {responseData?.[0]?.[1]} mL</TableCell> 
         </TableRow>
         <TableRow key="Cycle Count">
           <TableCell>Cycle Count</TableCell>
